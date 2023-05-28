@@ -4,8 +4,6 @@ const http = require('http');
 const url = require('url');
 const { parse: parseQuery } = require('querystring');
 const fs = require('fs');
-const path = require('path');
-const { log } = require('console');
 
 class Express {
     constructor() {
@@ -87,8 +85,8 @@ class Express {
                                 };
                             },
                             sendFile: (filePath) => {
-                                const absolutePath = path.join(__dirname, filePath);
-                                fs.readFile(absolutePath, (err, data) => {
+
+                                fs.readFile(filePath, (err, data) => {
                                     if (err) {
                                         res.statusCode = 500;
                                         res.setHeader('Content-Type', 'text/plain');
